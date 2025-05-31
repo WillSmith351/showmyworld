@@ -70,3 +70,37 @@ jobs:
 
       - name: run test
         run: pnpm run test
+
+  sonarqube:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v3
+
+      - name: setup node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: install pnpm dependency
+        run: npm install -g pnpm
+
+      - name: install dependencies
+        run: pnpm install
+
+      - name: install sonar dependency
+        run: pnpm add -g sonarqube-scanner
+
+      - name: run sonarqube
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL}}
+        run: |
+          sonar-scanner \
+              -Dsonar.projectKey=showmyworld-api \
+              -Dsonar.sources=. \
+              -Dsonar.host.url=$SONAR_HOST_URL \
+              -Dsonar.login=$SONAR_TOKEN \
+              -Dsonar.language=js \
+              -Dsonar.sourceEncoding=UTF-8
