@@ -72,7 +72,7 @@ jobs:
         run: pnpm run test
 
   sonarqube:
-    name: Build
+    name: sonarqube
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
@@ -89,18 +89,21 @@ jobs:
       - name: install dependencies
         run: pnpm install
 
-      - name: install sonar dependency
-        run: pnpm add -g sonarqube-scanner
-
-      - name: run sonarqube
+      - name: run sonarqube scanner
+        uses: sonarsource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL}}
-        run: |
-          sonar-scanner \
-              -Dsonar.projectKey=showmyworld-api \
-              -Dsonar.sources=. \
-              -Dsonar.host.url=$SONAR_HOST_URL \
-              -Dsonar.login=$SONAR_TOKEN \
-              -Dsonar.language=js \
-              -Dsonar.sourceEncoding=UTF-8
+
+      # - name: run sonarqube
+      #   env:
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #     SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL}}
+      #   run: |
+      #     sonar-scanner \
+      #         -Dsonar.projectKey=showmyworld-api \
+      #         -Dsonar.sources=. \
+      #         -Dsonar.host.url=$SONAR_HOST_URL \
+      #         -Dsonar.login=$SONAR_TOKEN \
+      #         -Dsonar.language=js \
+      #         -Dsonar.sourceEncoding=UTF-8
