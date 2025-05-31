@@ -49,7 +49,7 @@ jobs:
         run: pnpm install
 
       - name: run eslint
-        run: pnpm run eslint
+        run: pnpm run lint
 
   test:
     runs-on: ubuntu-latest

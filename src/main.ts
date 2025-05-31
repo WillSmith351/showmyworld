@@ -17,4 +17,4 @@ async function bootstrap() {
 export function registerGlobals(app: INestApplication) {
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector), {}));
 }
-bootstrap();
+void bootstrap();
