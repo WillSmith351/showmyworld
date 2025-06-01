@@ -14,7 +14,7 @@
     <img src="http://sonarqube.willsmith.website/api/project_badges/measure?project=showmyworld-api&metric=alert_status&token=sqb_f3c5dbf2181d9556565b40b74963133531f3a5ed" alt="Quality Gate Status" />
   </a>
   <a href="http://sonarqube.willsmith.website/dashboard?id=showmyworld-api">
-    <img src="http://sonarqube.willsmith.website/api/project_badges/measure?project=showmyworld-api&metric=sqale_rating&token=sqb_17c8a31a0e1334a7cbc7ab32e14225665da6c14a" alt="Maintainability Rating" />
+    <img src="http://sonar.willsmith.website/api/project_badges/measure?project=showmyworld-api&metric=software_quality_reliability_rating&token=sqb_f3c5dbf2181d9556565b40b74963133531f3a5ed" alt="Maintainability Rating" />
   </a>
   <a href="http://sonarqube.willsmith.website/dashboard?id=showmyworld-api">
     <img src="http://sonarqube.willsmith.website/api/project_badges/measure?project=showmyworld-api&metric=software_quality_security_rating&token=sqb_f3c5dbf2181d9556565b40b74963133531f3a5ed" alt="Security Rating" />
