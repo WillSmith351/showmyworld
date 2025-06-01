@@ -69,7 +69,7 @@ jobs:
         run: pnpm install
 
       - name: run test
-        run: pnpm run test:watch
+        run: pnpm run test
 
   sonarqube:
     name: sonarqube
