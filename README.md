@@ -5,23 +5,29 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
+  <p align="center">
+  A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.
+</p>
 
-[![Quality Gate Status](http://sonarqube.willsmith.website/api/project_badges/measure?project=showmyworld-api&metric=alert_status&token=sqb_17c8a31a0e1334a7cbc7ab32e14225665da6c14a)](http://sonarqube.willsmith.website/dashboard?id=showmyworld-api)
-
-[![Maintainability Rating](http://sonarqube.willsmith.website/api/project_badges/measure?project=showmyworld-api&metric=sqale_rating&token=sqb_17c8a31a0e1334a7cbc7ab32e14225665da6c14a)](http://sonarqube.willsmith.website/dashboard?id=showmyworld-api)
-
-[![Reliability Rating](http://sonarqube.willsmith.website/api/project_badges/measure?project=showmyworld-api&metric=reliability_rating&token=sqb_17c8a31a0e1334a7cbc7ab32e14225665da6c14a)](http://sonarqube.willsmith.website/dashboard?id=showmyworld-api)
-
-[![Security Rating](http://sonarqube.willsmith.website/api/project_badges/measure?project=showmyworld-api&metric=security_rating&token=sqb_17c8a31a0e1334a7cbc7ab32e14225665da6c14a)](http://sonarqube.willsmith.website/dashboard?id=showmyworld-api)
-
-[![Bugs](http://sonarqube.willsmith.website/api/project_badges/measure?project=showmyworld-api&metric=bugs&token=sqb_17c8a31a0e1334a7cbc7ab32e14225665da6c14a)](http://sonarqube.willsmith.website/dashboard?id=showmyworld-api)
-
-[![Code Smells](http://sonarqube.willsmith.website/api/project_badges/measure?project=showmyworld-api&metric=code_smells&token=sqb_17c8a31a0e1334a7cbc7ab32e14225665da6c14a)](http://sonarqube.willsmith.website/dashboard?id=showmyworld-api)
-
-[![Lines of Code](http://sonarqube.willsmith.website/api/project_badges/measure?project=showmyworld-api&metric=ncloc&token=sqb_17c8a31a0e1334a7cbc7ab32e14225665da6c14a)](http://sonarqube.willsmith.website/dashboard?id=showmyworld-api)
-
+<p align="center">
+  <a href="http://sonarqube.willsmith.website/dashboard?id=showmyworld-api">
+    <img src="http://sonarqube.willsmith.website/api/project_badges/measure?project=showmyworld-api&metric=alert_status&token=sqb_f3c5dbf2181d9556565b40b74963133531f3a5ed" alt="Quality Gate Status" />
+  </a>
+  <a href="http://sonarqube.willsmith.website/dashboard?id=showmyworld-api">
+    <img src="http://sonarqube.willsmith.website/api/project_badges/measure?project=showmyworld-api&metric=sqale_rating&token=sqb_17c8a31a0e1334a7cbc7ab32e14225665da6c14a" alt="Maintainability Rating" />
+  </a>
+  <a href="http://sonarqube.willsmith.website/dashboard?id=showmyworld-api">
+    <img src="http://sonarqube.willsmith.website/api/project_badges/measure?project=showmyworld-api&metric=software_quality_security_rating&token=sqb_f3c5dbf2181d9556565b40b74963133531f3a5ed" alt="Security Rating" />
+  </a>
+  <a href="http://sonarqube.willsmith.website/dashboard?id=showmyworld-api">
+    <img src="http://sonarqube.willsmith.website/api/project_badges/measure?project=showmyworld-api&metric=duplicated_lines_density&token=sqb_f3c5dbf2181d9556565b40b74963133531f3a5ed" alt="Duplicated Lines (%)" />
+  </a>
+  <a href="http://sonarqube.willsmith.website/dashboard?id=showmyworld-api">
+    <img src="http://sonarqube.willsmith.website/api/project_badges/measure?project=showmyworld-api&metric=software_quality_security_issues&token=sqb_f3c5dbf2181d9556565b40b74963133531f3a5ed" alt="Security Issues" />
+  </a>
+  <a href="http://sonarqube.willsmith.website/dashboard?id=showmyworld-api">
+    <img src="http://sonarqube.willsmith.website/api/project_badges/measure?project=showmyworld-api&metric=ncloc&token=sqb_f3c5dbf2181d9556565b40b74963133531f3a5ed" alt="Lines of Code" />
+  </a>
 </p>
 
 ## Description
