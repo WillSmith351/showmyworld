@@ -3,7 +3,7 @@ import { SignupDto } from './dto/signup.dto';
 import { UserService } from '../user/user.service';
 import { PrismaService } from '../prisma/prisma.service';
 import { HashService } from './config/hash.service';
-
+import { ErrorMessage } from '../../common/messages/error.message';
 @Injectable()
 export class AuthService {
   constructor(
@@ -17,12 +17,12 @@ export class AuthService {
 
     const existingUserByEmail = await this.userService.userByEmail(email);
     if (existingUserByEmail) {
-      throw new BadRequestException('User with this email already exists');
+      throw new BadRequestException(ErrorMessage.USER.USER_EMAIL_ALREADY_EXIST);
     }
 
     const existingUserByUsername = await this.userService.userByUsername(username);
     if (existingUserByUsername) {
-      throw new BadRequestException('User with this username already exists');
+      throw new BadRequestException(ErrorMessage.USER.USER_USERNAME_ALREADY_EXIST);
     }
 
     const hashedPassword = await this.hashService.HashPassword(password);
