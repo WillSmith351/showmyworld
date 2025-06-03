@@ -4,12 +4,16 @@ import { SignupDto } from './dto/signup.dto';
 import { PrismaService } from '../prisma/prisma.service';
 import { HashService } from './config/hash.service';
 import { ErrorMessage } from '../../common/messages/error.message';
+import { UserService } from '../user/user.service';
+import { TokenService } from './config/token.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly hashService: HashService,
+    private readonly userService: UserService,
+    private readonly tokenService: TokenService,
   ) {}
 
   async signup(signupDto: SignupDto): Promise<string> {
@@ -43,5 +47,21 @@ export class AuthService {
       }
       throw new BadRequestException(ErrorMessage.PRISMA.UNEXPECTED_ERROR);
     }
+  }
+
+  async login(email: string, password: string) {
+    const user = await this.userService.userByEmail(email.toLowerCase().trim());
+    if (!user) {
+      throw new BadRequestException(ErrorMessage.USER.USER_NOT_FOUND);
+    }
+    await this.hashService.comparePassword(password, user.password);
+
+    const jwtToken = this.tokenService.signToken({
+      userId: user.id,
+      email: user.email,
+      username: user.username,
+    });
+
+    return jwtToken;
   }
 }

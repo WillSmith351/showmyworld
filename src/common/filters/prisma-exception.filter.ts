@@ -17,6 +17,9 @@ export class PrismaExceptionFilter implements ExceptionFilter {
     } else if (exception.code === 'P2003') {
       status = HttpStatus.BAD_REQUEST;
       message = ErrorMessage.PRISMA.FOREIGN_KEY_CONSTRAINT_VIOLATION;
+    } else if (exception.code === 'P2025') {
+      status = HttpStatus.NOT_FOUND;
+      message = ErrorMessage.USER.USER_NOT_FOUND;
     }
 
     response.status(status).json({
