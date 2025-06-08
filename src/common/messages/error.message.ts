@@ -5,8 +5,14 @@ export const ErrorMessage = {
     USER_NOT_FOUND: 'User not found',
     USER_INVALID_PASSWORD: 'Invalid password',
   },
+  PROJECT: {
+    PROJECT_USER_ALREADY_EXIST: 'Project with this user already exists',
+    PROJET_NOT_FOUND: 'Project not found',
+    PROJECT_INVITATION_USER_INVITED_SAME: 'You cannot invite yourself to a project',
+  },
   AUTH: {
     INVALID_TOKEN: 'Invalid token',
+    NO_TOKEN: 'Unauthorized, no token provided',
   },
   PRISMA: {
     UNIQUE_CONSTRAINT_VIOLATION: 'The value already exists',
