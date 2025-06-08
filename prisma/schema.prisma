@@ -8,17 +8,72 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-model User {
-  id             String   @id @default(uuid())
-  username       String   @unique
-  firstname      String
-  lastname       String
-  email          String   @unique
-  password       String
-  bio            String?
-  profilePicture String?  @unique
-  jobTitle       String
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+// Enum
+
+enum ProjectStatus {
+  ACTIVE
+  IN_PROGESS
+  COMPLETED
 }
 
+enum ProjectInvitationStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}
+
+model User {
+  id                 String              @id @default(uuid())
+  username           String              @unique
+  firstname          String
+  lastname           String
+  email              String              @unique
+  password           String
+  bio                String?
+  profilePicture     String?             @unique
+  jobTitle           String
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  projects           ProjectUser[]       @relation("UserProjects")
+  invitationSent     ProjectInvitation[] @relation("UserInvitationsSent")
+  invitationReceived ProjectInvitation[] @relation("UserInvitationsReceived")
+}
+
+model ProjectUser {
+  id        String   @id @default(uuid())
+  userId    String
+  projectId String
+  role      String
+  createdAt DateTime @default(now())
+  user      User     @relation("UserProjects", fields: [userId], references: [id])
+  project   Project  @relation("ProjectUsers", fields: [projectId], references: [id])
+
+  @@unique([userId, projectId])
+}
+
+model Project {
+  id          String              @id @default(uuid())
+  title       String
+  description String
+  status      ProjectStatus       @default(ACTIVE)
+  isVisible   Boolean             @default(false)
+  StartDate   DateTime            @default(now())
+  EndDate     DateTime?
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+  users       ProjectUser[]       @relation("ProjectUsers")
+  invitations ProjectInvitation[] @relation("ProjectInvitations")
+}
+
+model ProjectInvitation {
+  id        String                  @id @default(uuid())
+  projectId String
+  inviterId String
+  inviteeId String
+  role      String
+  status    ProjectInvitationStatus @default(PENDING)
+  sentAt    DateTime                @default(now())
+  project   Project                 @relation("ProjectInvitations", fields: [projectId], references: [id])
+  inviter   User                    @relation("UserInvitationsSent", fields: [inviterId], references: [id])
+  invitee   User                    @relation("UserInvitationsReceived", fields: [inviteeId], references: [id])
+}

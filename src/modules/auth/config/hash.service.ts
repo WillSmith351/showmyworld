@@ -16,4 +16,21 @@ export class HashService {
       });
     }
   }
+
+  async comparePassword(password: string, hashedPassword: string) {
+    try {
+      const isMatch = await bcrypt.compare(password, hashedPassword);
+      if (!isMatch) {
+        throw new InternalServerErrorException({
+          message: 'Password comparison failed',
+          cause: 'The provided password does not match the hashed password.',
+        });
+      }
+    } catch (error) {
+      throw new InternalServerErrorException({
+        message: 'Error comparing password',
+        cause: error instanceof Error ? error.message : String(error),
+      });
+    }
+  }
 }
