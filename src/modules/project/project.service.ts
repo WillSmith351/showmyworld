@@ -78,4 +78,32 @@ export class ProjectService {
       },
     });
   }
+
+  async getProjectById(id: string) {
+    const project = await this.prisma.project.findUnique({
+      where: { id },
+      include: {
+        users: {
+          include: {
+            user: true,
+          },
+        },
+      },
+    });
+
+    if (!project) {
+      throw new BadRequestException(ErrorMessage.PROJECT.PROJECT_NOT_FOUND);
+    }
+
+    return {
+      ...project,
+      users: project.users.map((user) => {
+        return {
+          id: user.user.id,
+          username: user.user.username,
+          role: user.role,
+        };
+      }),
+    };
+  }
 }

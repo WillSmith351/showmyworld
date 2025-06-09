@@ -38,7 +38,7 @@ export class PrismaExceptionFilter implements ExceptionFilter {
         message = ErrorMessage.USER.USER_NOT_FOUND;
       } else if (constraint?.toLowerCase().includes('projectid')) {
         status = HttpStatus.BAD_REQUEST;
-        message = ErrorMessage.PROJECT.PROJET_NOT_FOUND;
+        message = ErrorMessage.PROJECT.PROJECT_NOT_FOUND;
       } else {
         status = HttpStatus.BAD_REQUEST;
         message = ErrorMessage.PRISMA.FOREIGN_KEY_CONSTRAINT_VIOLATION;
