@@ -17,7 +17,7 @@ export class TokenService {
     private readonly jwtService: JwtService,
     private readonly configService: ConfigService,
   ) {
-    this.jwtExpiresIn = this.configService.get<string>('JWT_EXPIRES_IN') ?? '1h';
+    this.jwtExpiresIn = this.configService.get<string>('JWT_EXPIRES_IN') ?? '1week';
   }
 
   signToken(payload: TokenPayload): string {

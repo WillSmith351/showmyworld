@@ -7,7 +7,7 @@ export const ErrorMessage = {
   },
   PROJECT: {
     PROJECT_USER_ALREADY_EXIST: 'Project with this user already exists',
-    PROJET_NOT_FOUND: 'Project not found',
+    PROJECT_NOT_FOUND: 'Project not found',
     PROJECT_INVITATION_USER_INVITED_SAME: 'You cannot invite yourself to a project',
   },
   AUTH: {

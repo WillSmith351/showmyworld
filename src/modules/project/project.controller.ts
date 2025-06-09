@@ -1,4 +1,13 @@
-import { Controller, Post, Body, UsePipes, ValidationPipe, UseFilters, Get } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Param,
+  UsePipes,
+  ValidationPipe,
+  UseFilters,
+  Get,
+} from '@nestjs/common';
 import { PrismaExceptionFilter } from '../../common/filters/prisma-exception.filter';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { ProjectService } from './project.service';
@@ -12,14 +21,21 @@ export class ProjectController {
   @Post()
   @UseFilters(PrismaExceptionFilter)
   @UsePipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
-  create(@Body() createProjectDto: CreateProjectDto, @CurrentUser() user: TokenPayload) {
-    return this.projectService.create(createProjectDto, user);
+  async create(@Body() createProjectDto: CreateProjectDto, @CurrentUser() user: TokenPayload) {
+    return await this.projectService.create(createProjectDto, user);
   }
 
   @Get()
   @UseFilters(PrismaExceptionFilter)
   @UsePipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
-  getAllProjects() {
-    return this.projectService.getAllProjects();
+  async getAllProjects() {
+    return await this.projectService.getAllProjects();
+  }
+
+  @Get(':id')
+  @UseFilters(PrismaExceptionFilter)
+  @UsePipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
+  async getProjectById(@Param('id') id: string) {
+    return await this.projectService.getProjectById(id);
   }
 }
