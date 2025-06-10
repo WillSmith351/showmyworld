@@ -5,6 +5,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import { Project } from '@prisma/client';
 import { UserService } from '../user/user.service';
 import { ErrorMessage } from 'src/common/messages/error.message';
+import { RuleTester } from 'eslint';
 
 @Injectable()
 export class ProjectService {
@@ -108,11 +109,21 @@ export class ProjectService {
   }
 
   async getInvitationsByProjectId(projectId: string) {
-    const invitations = await this.prisma.projectInvitation.findFirst({
+    const invitations = await this.prisma.projectInvitation.findMany({
       where: { projectId },
       include: {
-        inviter: true,
-        invitee: true,
+        inviter: {
+          select: {
+            id: true,
+            username: true,
+          },
+        },
+        invitee: {
+          select: {
+            id: true,
+            username: true,
+          },
+        },
       },
     });
 
@@ -120,17 +131,6 @@ export class ProjectService {
       throw new BadRequestException(ErrorMessage.PROJECT.PROJECT_NOT_FOUND);
     }
 
-    return {
-      ...invitations,
-      invitations: {
-        id: invitations.id,
-        role: invitations.role,
-        status: invitations.status,
-      },
-      inviter: {
-        id: invitations.inviter.id,
-        username: invitations.inviter.username,
-      },
-    };
+    return invitations;
   }
 }
