@@ -38,4 +38,11 @@ export class ProjectController {
   async getProjectById(@Param('id') id: string) {
     return await this.projectService.getProjectById(id);
   }
+
+  @Get(':id/invitation')
+  @UseFilters(PrismaExceptionFilter)
+  @UsePipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
+  async getProjectInvitation(@Param('id') id: string) {
+    return await this.projectService.getInvitationsByProjectId(id);
+  }
 }

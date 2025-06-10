@@ -106,4 +106,31 @@ export class ProjectService {
       }),
     };
   }
+
+  async getInvitationsByProjectId(projectId: string) {
+    const invitations = await this.prisma.projectInvitation.findFirst({
+      where: { projectId },
+      include: {
+        inviter: true,
+        invitee: true,
+      },
+    });
+
+    if (!invitations) {
+      throw new BadRequestException(ErrorMessage.PROJECT.PROJECT_NOT_FOUND);
+    }
+
+    return {
+      ...invitations,
+      invitations: {
+        id: invitations.id,
+        role: invitations.role,
+        status: invitations.status,
+      },
+      inviter: {
+        id: invitations.inviter.id,
+        username: invitations.inviter.username,
+      },
+    };
+  }
 }
